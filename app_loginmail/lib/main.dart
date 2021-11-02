@@ -138,28 +138,58 @@ class SecondRoute extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Container(
-            width: 425,
-            height: 50,
-            margin: EdgeInsets.only(top: 100),
-            child: ElevatedButton(
-              style: ElevatedButton.styleFrom(
-                primary: Colors.black, // background
+              margin: EdgeInsets.only(top: 70),
+              child: Text(
+                "USP...coundn't Sign in",
+                style: TextStyle(
+                  color: Colors.black87,
+                  fontSize: 20,
+                ),
               ),
-              child: Text('TRY AGAIN',
-                  style: TextStyle(
-                    color: Colors.white,
-                  )),
-              onPressed: () {
-                // Navigate to second route when tapped.
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => FirstRoute(),
-                  ),
-                );
-              },
             ),
-          ),
+            Container(
+             margin: EdgeInsets.only(top: 2),
+              child: Text(
+                "Your username and password don't match.",
+                style: TextStyle(
+                  color: Colors.grey.shade400,
+                  fontSize: 15,
+                ),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(top: 2),
+              child: Text(
+                "Please, try again",
+                style: TextStyle(
+                 color: Colors.grey.shade400,
+                  fontSize: 15,
+                ),
+              ),
+            ),
+            Container(
+              width: 425,
+              height: 50,
+              margin: EdgeInsets.only(top: 300),
+              child: ElevatedButton(
+                style: ElevatedButton.styleFrom(
+                  primary: Colors.black, // background
+                ),
+                child: Text('TRY AGAIN',
+                    style: TextStyle(
+                      color: Colors.white,
+                    )),
+                onPressed: () {
+                  // Navigate to second route when tapped.
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => FirstRoute(),
+                    ),
+                  );
+                },
+              ),
+            ),
           ],
         ),
       ),
