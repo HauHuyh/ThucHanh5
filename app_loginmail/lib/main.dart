@@ -138,20 +138,28 @@ class SecondRoute extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Container(
-              margin: EdgeInsets.only(bottom: 50),
-              child: ElevatedButton(
-                onPressed: () {
-                  // Navigate back to first route when tapped.
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => FirstRoute(),
-                    ),
-                  );
-                },
-                child: Text('TRY AGAIN"'),
+            width: 425,
+            height: 50,
+            margin: EdgeInsets.only(top: 100),
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Colors.black, // background
               ),
-            )
+              child: Text('TRY AGAIN',
+                  style: TextStyle(
+                    color: Colors.white,
+                  )),
+              onPressed: () {
+                // Navigate to second route when tapped.
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => FirstRoute(),
+                  ),
+                );
+              },
+            ),
+          ),
           ],
         ),
       ),
