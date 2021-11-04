@@ -1,4 +1,3 @@
-// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, deprecated_member_use, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
 
@@ -87,6 +86,7 @@ class FirstRoute extends StatelessWidget {
                   ),
                   TextField(
                     textAlign: TextAlign.center,
+                    obscureText: true,
                     decoration: const InputDecoration(
                         filled: true,
                         fillColor: Colors.white,
@@ -138,7 +138,26 @@ class SecondRoute extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Container(
-              margin: EdgeInsets.only(top: 70),
+            margin: EdgeInsets.only(top: 70, bottom: 20),
+            child: SizedBox(
+              height: 120,
+              width: 120,
+              child: Container(
+                  child: FlatButton(
+                onPressed: () {},
+                color: Colors.white,
+                child: Icon(
+                  Icons.drafts_sharp,
+                  size: 70,
+                  color: Colors.lightBlue.shade200,
+                ),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(60.0)),
+              )),
+            ),
+          ),
+            Container(
+              margin: EdgeInsets.only(bottom: 2),
               child: Text(
                 "USP...coundn't Sign in",
                 style: TextStyle(
@@ -148,7 +167,7 @@ class SecondRoute extends StatelessWidget {
               ),
             ),
             Container(
-             margin: EdgeInsets.only(top: 2),
+              margin: EdgeInsets.only(bottom: 2),
               child: Text(
                 "Your username and password don't match.",
                 style: TextStyle(
@@ -158,7 +177,7 @@ class SecondRoute extends StatelessWidget {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top: 2),
+              margin: EdgeInsets.only(bottom: 2),
               child: Text(
                 "Please, try again",
                 style: TextStyle(
@@ -170,7 +189,7 @@ class SecondRoute extends StatelessWidget {
             Container(
               width: 425,
               height: 50,
-              margin: EdgeInsets.only(top: 300),
+              margin: EdgeInsets.only(top: 250,bottom: 10),
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
                   primary: Colors.black, // background
@@ -196,3 +215,4 @@ class SecondRoute extends StatelessWidget {
     );
   }
 }
+
