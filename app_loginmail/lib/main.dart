@@ -11,7 +11,7 @@ class HeroApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'Transition Demo',
-      home: const FirstRoute(),
+      home: const LoadingScreen(),
     );
   }
 }
@@ -19,6 +19,8 @@ class HeroApp extends StatelessWidget {
 TextEditingController _email = new TextEditingController();
 TextEditingController _password = new TextEditingController();
 bool flag = false;
+bool isChecked = false;
+bool isChecked1 = false;
 
 class FirstRoute extends StatelessWidget {
   const FirstRoute({Key? key}) : super(key: key);
@@ -37,7 +39,7 @@ class FirstRoute extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(
-        builder: (context) => FirstRoute(),
+        builder: (context) => LoadingScreen(),
       ),
     );
   }
@@ -61,6 +63,7 @@ class FirstRoute extends StatelessWidget {
     return true;
   }
 
+//Trang chủ
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -300,53 +303,279 @@ class LoadingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('First Route'),
+      body: Column(
+        children: [LoadingScreenState()],
       ),
-      backgroundColor: Colors.cyan,
-      body: Center(
-        child: Column(
-          children: <Widget>[
-            Container(
-              margin: EdgeInsets.only(top: 70, bottom: 20),
-              child: SizedBox(
-                height: 120,
-                width: 120,
-                child: Container(
-                    child: FlatButton(
-                  onPressed: () {},
-                  color: Colors.white,
-                  child: Icon(
-                    Icons.drafts_sharp,
-                    size: 70,
-                    color: Colors.lightBlue.shade200,
+    );
+  }
+}
+
+class LoadingScreenState extends StatefulWidget {
+  const LoadingScreenState({Key? key}) : super(key: key);
+
+  @override
+  State<LoadingScreenState> createState() => _LoadingState();
+}
+
+class _LoadingState extends State<LoadingScreenState> {
+  bool isChecked = false;
+
+  @override
+  Widget build(BuildContext context) {
+    Color getColor(Set<MaterialState> states) {
+      const Set<MaterialState> interactiveStates = <MaterialState>{
+        MaterialState.pressed,
+        MaterialState.hovered,
+        MaterialState.focused,
+      };
+      if (states.any(interactiveStates.contains)) {
+        return Colors.blue;
+      }
+      return Colors.red;
+    }
+
+    return Column(
+      children: [
+        Container(
+          color: Colors.grey.shade200,
+          alignment: Alignment.centerRight,
+          margin: EdgeInsets.only(right: 35),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Container(
+                margin: EdgeInsets.only(left: 200),
+                child: Text(
+                  "Mailboxes",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
                   ),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(60.0)),
-                )),
-              ),
-            ),
-            Container(
-              child: Text(
-                "SignIn",
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 40,
                 ),
               ),
+              Column(children: [
+                Checkbox(
+                  checkColor: Colors.white,
+                  fillColor: MaterialStateProperty.resolveWith(getColor),
+                  value: isChecked,
+                  onChanged: (bool? value) {
+                    setState(() {
+                      isChecked = value!;
+                    });
+                  },
+                ),
+                Text(
+                  "DONE",
+                  style: TextStyle(color: Colors.blue),
+                )
+              ]),
+            ],
+          ),
+        ),
+        Container(
+          color: Colors.grey.shade300,
+          child: Container(
+            alignment: Alignment.centerLeft,
+            margin: EdgeInsets.only(left: 10, top: 30, bottom: 5),
+            child: Text("Mailboxes"),
+          ),
+        ),
+        //All inboxes
+        Row(
+          children: [
+            Column(
+              children: [
+                Checkbox(
+                  checkColor: Colors.white,
+                  fillColor: MaterialStateProperty.resolveWith(getColor),
+                  value: isChecked,
+                  onChanged: (bool? value) {
+                    setState(() {
+                      isChecked = value!;
+                    });
+                  },
+                ),
+              ],
             ),
             Container(
-              child: Text(
-                "Speak, friend, and enter",
-                style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 20,
-                ),
+              width: 450,
+              margin: EdgeInsets.only(left: 20, top: 20),
+              decoration: BoxDecoration(
+                  border: Border(
+                      bottom: BorderSide(width: 1.0, color: Colors.grey))),
+              child: Row(
+                children: [
+                  Icon(Icons.check_box_outline_blank),
+                  Container(
+                    margin: EdgeInsets.only(left: 10, bottom: 15),
+                    child: Text('All inboxes'),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(left: 300),
+                    child: Icon(Icons.check_box_outline_blank),
+                  )
+                ],
               ),
-            ),
+            )
           ],
         ),
-      ),
+        //iCloud
+        Row(
+          children: [
+            Column(
+              children: [
+                Checkbox(
+                  checkColor: Colors.white,
+                  fillColor: MaterialStateProperty.resolveWith(getColor),
+                  value: isChecked,
+                  onChanged: (bool? value) {
+                    setState(() {
+                      isChecked = value!;
+                    });
+                  },
+                ),
+              ],
+            ),
+            Container(
+              width: 450,
+              margin: EdgeInsets.only(left: 20, top: 20),
+              decoration: BoxDecoration(
+                  border: Border(
+                      bottom: BorderSide(width: 1.0, color: Colors.grey))),
+              child: Row(
+                children: [
+                  Icon(Icons.check_box_outline_blank),
+                  Container(
+                    margin: EdgeInsets.only(left: 10, bottom: 15),
+                    child: Text('iCloud'),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(left: 330),
+                    child: Icon(Icons.check_box_outline_blank),
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
+        //Gmail
+        Row(
+          children: [
+            Column(
+              children: [
+                Checkbox(
+                  checkColor: Colors.white,
+                  fillColor: MaterialStateProperty.resolveWith(getColor),
+                  value: isChecked,
+                  onChanged: (bool? value) {
+                    setState(() {
+                      isChecked = value!;
+                    });
+                  },
+                ),
+              ],
+            ),
+            Container(
+              width: 450,
+              margin: EdgeInsets.only(left: 20, top: 20),
+              decoration: BoxDecoration(
+                  border: Border(
+                      bottom: BorderSide(width: 1.0, color: Colors.grey))),
+              child: Row(
+                children: [
+                  Icon(Icons.check_box_outline_blank),
+                  Container(
+                    margin: EdgeInsets.only(left: 10, bottom: 15),
+                    child: Text('Gmail'),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(left: 333),
+                    child: Icon(Icons.check_box_outline_blank),
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
+        //Hot mail
+        Row(
+          children: [
+            Column(
+              children: [
+                Checkbox(
+                  checkColor: Colors.white,
+                  fillColor: MaterialStateProperty.resolveWith(getColor),
+                  value: isChecked,
+                  onChanged: (bool? value) {
+                    setState(() {
+                      isChecked = value!;
+                    });
+                  },
+                ),
+              ],
+            ),
+            Container(
+              width: 450,
+              margin: EdgeInsets.only(left: 20, top: 20),
+              decoration: BoxDecoration(
+                  border: Border(
+                      bottom: BorderSide(width: 1.0, color: Colors.grey))),
+              child: Row(
+                children: [
+                  Icon(Icons.check_box_outline_blank),
+                  Container(
+                    margin: EdgeInsets.only(left: 10, bottom: 15),
+                    child: Text('Hot mail'),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(left: 317),
+                    child: Icon(Icons.check_box_outline_blank),
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
+        //Vip
+        Row(
+          children: [
+            Column(
+              children: [
+                Checkbox(
+                  checkColor: Colors.white,
+                  fillColor: MaterialStateProperty.resolveWith(getColor),
+                  value: isChecked,
+                  onChanged: (bool? value) {
+                    setState(() {
+                      isChecked = value!;
+                    });
+                  },
+                ),
+              ],
+            ),
+            Container(
+              width: 450,
+              margin: EdgeInsets.only(left: 20, top: 20),
+              decoration: BoxDecoration(
+                  border: Border(
+                      bottom: BorderSide(width: 1.0, color: Colors.grey))),
+              child: Row(
+                children: [
+                  Icon(Icons.check_box_outline_blank),
+                  Container(
+                    margin: EdgeInsets.only(left: 10, bottom: 15),
+                    child: Text('Vip'),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(left: 347),
+                    child: Icon(Icons.check_box_outline_blank),
+                  )
+                ],
+              ),
+            )
+          ],
+        ),
+      ],
     );
   }
 }
