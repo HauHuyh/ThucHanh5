@@ -388,10 +388,10 @@ class _LoadingState extends State<LoadingScreenState> {
                 Checkbox(
                   checkColor: Colors.white,
                   fillColor: MaterialStateProperty.resolveWith(getColor),
-                  value: isChecked,
+                  value: isChecked1,
                   onChanged: (bool? value) {
                     setState(() {
-                      isChecked = value!;
+                      isChecked1 = value!;
                     });
                   },
                 ),
@@ -427,10 +427,10 @@ class _LoadingState extends State<LoadingScreenState> {
                 Checkbox(
                   checkColor: Colors.white,
                   fillColor: MaterialStateProperty.resolveWith(getColor),
-                  value: isChecked,
+                  value: isChecked1,
                   onChanged: (bool? value) {
                     setState(() {
-                      isChecked = value!;
+                      isChecked1 = value!;
                     });
                   },
                 ),
@@ -444,7 +444,7 @@ class _LoadingState extends State<LoadingScreenState> {
                       bottom: BorderSide(width: 1.0, color: Colors.grey))),
               child: Row(
                 children: [
-                  Icon(Icons.check_box_outline_blank),
+                  Icon(Icons.cloud_circle),
                   Container(
                     margin: EdgeInsets.only(left: 10, bottom: 15),
                     child: Text('iCloud'),
@@ -466,10 +466,10 @@ class _LoadingState extends State<LoadingScreenState> {
                 Checkbox(
                   checkColor: Colors.white,
                   fillColor: MaterialStateProperty.resolveWith(getColor),
-                  value: isChecked,
+                  value: isChecked1,
                   onChanged: (bool? value) {
                     setState(() {
-                      isChecked = value!;
+                      isChecked1 = value!;
                     });
                   },
                 ),
@@ -483,7 +483,7 @@ class _LoadingState extends State<LoadingScreenState> {
                       bottom: BorderSide(width: 1.0, color: Colors.grey))),
               child: Row(
                 children: [
-                  Icon(Icons.check_box_outline_blank),
+                  Icon(Icons.mail_outline_outlined),
                   Container(
                     margin: EdgeInsets.only(left: 10, bottom: 15),
                     child: Text('Gmail'),
@@ -505,10 +505,10 @@ class _LoadingState extends State<LoadingScreenState> {
                 Checkbox(
                   checkColor: Colors.white,
                   fillColor: MaterialStateProperty.resolveWith(getColor),
-                  value: isChecked,
+                  value: isChecked1,
                   onChanged: (bool? value) {
                     setState(() {
-                      isChecked = value!;
+                      isChecked1 = value!;
                     });
                   },
                 ),
@@ -522,7 +522,7 @@ class _LoadingState extends State<LoadingScreenState> {
                       bottom: BorderSide(width: 1.0, color: Colors.grey))),
               child: Row(
                 children: [
-                  Icon(Icons.check_box_outline_blank),
+                  Icon(Icons.mail_rounded),
                   Container(
                     margin: EdgeInsets.only(left: 10, bottom: 15),
                     child: Text('Hot mail'),
@@ -544,7 +544,93 @@ class _LoadingState extends State<LoadingScreenState> {
                 Checkbox(
                   checkColor: Colors.white,
                   fillColor: MaterialStateProperty.resolveWith(getColor),
-                  value: isChecked,
+                  value: isChecked1,
+                  onChanged: (bool? value) {
+                    setState(() {
+                      isChecked1 = value!;
+                    });
+                  },
+                ),
+              ],
+            ),
+            Container(
+              width: 450,
+              margin: EdgeInsets.only(left: 20, top: 20),
+              decoration: BoxDecoration(
+                  border: Border(
+                      bottom: BorderSide(width: 1.0, color: Colors.grey))),
+              child: Row(
+                children: [
+                  Icon(Icons.people_alt_outlined),
+                  Container(
+                    margin: EdgeInsets.only(left: 10, bottom: 15),
+                    child: Text('VIP'),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(left: 347),
+                    child: Icon(Icons.check_box_outline_blank),
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
+        Container(
+          color: Colors.grey.shade300,
+          child: Container(
+            alignment: Alignment.centerLeft,
+            margin: EdgeInsets.only(left: 10, top: 30, bottom: 5),
+            child: Text("Special folders"),
+          ),
+        ),
+        //Secure
+        Row(
+          children: [
+            Column(
+              children: [
+                Checkbox(
+                  checkColor: Colors.white,
+                  fillColor: MaterialStateProperty.resolveWith(getColor),
+                  value: isChecked1,
+                  onChanged: (bool? value) {
+                    setState(() {
+                      isChecked1 = value!;
+                    });
+                  },
+                ),
+              ],
+            ),
+            Container(
+              width: 450,
+              margin: EdgeInsets.only(left: 20, top: 20),
+              decoration: BoxDecoration(
+                  border: Border(
+                      bottom: BorderSide(width: 1.0, color: Colors.grey))),
+              child: Row(
+                children: [
+                  Icon(Icons.security_rounded),
+                  Container(
+                    margin: EdgeInsets.only(left: 10, bottom: 15),
+                    child: Text('Secure'),
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(left: 328),
+                    child: Icon(Icons.check_box_outline_blank),
+                  )
+                ],
+              ),
+            ),
+          ],
+        ),
+        //Notifications
+        Row(
+          children: [
+            Column(
+              children: [
+                Checkbox(
+                  checkColor: Colors.white,
+                  fillColor: MaterialStateProperty.resolveWith(getColor),
+                  value: isChecked1,
                   onChanged: (bool? value) {
                     setState(() {
                       isChecked = value!;
@@ -561,18 +647,53 @@ class _LoadingState extends State<LoadingScreenState> {
                       bottom: BorderSide(width: 1.0, color: Colors.grey))),
               child: Row(
                 children: [
-                  Icon(Icons.check_box_outline_blank),
+                  Icon(Icons.notification_add_outlined),
                   Container(
                     margin: EdgeInsets.only(left: 10, bottom: 15),
-                    child: Text('Vip'),
+                    child: Text('Notifications'),
                   ),
                   Container(
-                    margin: EdgeInsets.only(left: 347),
+                    margin: EdgeInsets.only(left: 290),
                     child: Icon(Icons.check_box_outline_blank),
                   )
                 ],
               ),
-            )
+            ),
+          ],
+        ),
+        Row(
+          children: [
+            Column(
+              children: [
+                Container(
+                  width: 570,
+                  margin: EdgeInsets.only(top: 80),
+                  decoration: BoxDecoration(
+                      border: Border(
+                          bottom: BorderSide(width: 2.0, color: Colors.blue))),
+                ),
+                Container(
+                  child: Column(
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(top: 10),
+                        child: Text(
+                          'Delete',
+                          style: TextStyle(
+                            fontSize: 18,
+                          ),
+                        ),
+                      ),
+                      Container(
+                           margin: EdgeInsets.only(left: 330),
+                        child: Icon(Icons.check_box_outline_blank,
+                            color: Colors.blue),
+                      )
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
       ],
