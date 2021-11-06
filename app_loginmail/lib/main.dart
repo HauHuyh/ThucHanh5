@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, deprecated_member_use, prefer_const_literals_to_create_immutables
+import 'dart:html';
 
 import 'package:flutter/material.dart';
 
@@ -11,13 +11,55 @@ class HeroApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'Transition Demo',
-      home: FirstRoute(),
+      home: const FirstRoute(),
     );
   }
 }
 
+TextEditingController _email = new TextEditingController();
+TextEditingController _password = new TextEditingController();
+bool flag = false;
+
 class FirstRoute extends StatelessWidget {
   const FirstRoute({Key? key}) : super(key: key);
+
+  bool XuLiEmail(String value) {
+    if (value.isEmpty) {
+      return false;
+    }
+    if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value)) {
+      return false;
+    }
+    return true;
+  }
+
+  void Login(context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => FirstRoute(),
+      ),
+    );
+  }
+
+  void DangNhapThatBai(context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => SecondRoute(),
+      ),
+    );
+  }
+
+  bool KTEmail(String value) {
+    if (value != "") {
+      if (RegExp("^[a-zA-z0-9+_.-]+@[a-zA-z0-9.-]+.[a-z]")
+          .hasMatch(_email.text)) {
+        return false;
+      }
+    }
+    return true;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -73,10 +115,13 @@ class FirstRoute extends StatelessWidget {
                 children: [
                   TextField(
                     textAlign: TextAlign.center,
+                    controller: _email,
                     decoration: const InputDecoration(
                         filled: true,
                         fillColor: Colors.white,
-                        suffixIcon: Icon(Icons.check_box_outline_blank),
+                        suffixIcon: Icon(
+                          Icons.check_box_outline_blank,
+                        ),
                         border: OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.white)),
                         hintText: 'Email'),
@@ -85,9 +130,11 @@ class FirstRoute extends StatelessWidget {
                   SizedBox(
                     height: 10,
                   ),
+
                   TextField(
                     textAlign: TextAlign.center,
                     obscureText: true,
+                    controller: _password,
                     decoration: const InputDecoration(
                         filled: true,
                         fillColor: Colors.white,
@@ -110,12 +157,42 @@ class FirstRoute extends StatelessWidget {
                   )),
               onPressed: () {
                 // Navigate to second route when tapped.
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => SecondRoute(),
-                  ),
-                );
+                if (_email.text == "" && _password.text == "") {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          content: Text(
+                            "Chưa nhập thông tin",
+                          ),
+                        );
+                        Login(context);
+                      });
+                } else if (_email.text != _password.text) {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog();
+                      });
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SecondRoute(),
+                    ),
+                  );
+                } else {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog();
+                      });
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => LoadingScreen(),
+                    ),
+                  );
+                }
               },
             ),
           ),
@@ -208,6 +285,63 @@ class SecondRoute extends StatelessWidget {
                     ),
                   );
                 },
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class LoadingScreen extends StatelessWidget {
+  const LoadingScreen({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('First Route'),
+      ),
+      backgroundColor: Colors.cyan,
+      body: Center(
+        child: Column(
+          children: <Widget>[
+            Container(
+              margin: EdgeInsets.only(top: 70, bottom: 20),
+              child: SizedBox(
+                height: 120,
+                width: 120,
+                child: Container(
+                    child: FlatButton(
+                  onPressed: () {},
+                  color: Colors.white,
+                  child: Icon(
+                    Icons.drafts_sharp,
+                    size: 70,
+                    color: Colors.lightBlue.shade200,
+                  ),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(60.0)),
+                )),
+              ),
+            ),
+            Container(
+              child: Text(
+                "SignIn",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 40,
+                ),
+              ),
+            ),
+            Container(
+              child: Text(
+                "Speak, friend, and enter",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 20,
+                ),
               ),
             ),
           ],
