@@ -1,6 +1,10 @@
+//@dart=2.9--no-sound-null-
+import 'dart:async';
 import 'dart:html';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:loading_overlay/loading_overlay.dart';
 
 void main() => runApp(const HeroApp());
 
@@ -11,7 +15,7 @@ class HeroApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'Transition Demo',
-      home: const LoadingScreen(),
+      home: const FirstRoute(),
     );
   }
 }
@@ -21,47 +25,11 @@ TextEditingController _password = new TextEditingController();
 bool flag = false;
 bool isChecked = false;
 bool isChecked1 = false;
+const partern = r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$';
+final regExp = RegExp(partern);
 
 class FirstRoute extends StatelessWidget {
   const FirstRoute({Key? key}) : super(key: key);
-
-  bool XuLiEmail(String value) {
-    if (value.isEmpty) {
-      return false;
-    }
-    if (!RegExp("^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]").hasMatch(value)) {
-      return false;
-    }
-    return true;
-  }
-
-  void Login(context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => LoadingScreen(),
-      ),
-    );
-  }
-
-  void DangNhapThatBai(context) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => SecondRoute(),
-      ),
-    );
-  }
-
-  bool KTEmail(String value) {
-    if (value != "") {
-      if (RegExp("^[a-zA-z0-9+_.-]+@[a-zA-z0-9.-]+.[a-z]")
-          .hasMatch(_email.text)) {
-        return false;
-      }
-    }
-    return true;
-  }
 
 //Trang chủ
   @override
@@ -169,7 +137,16 @@ class FirstRoute extends StatelessWidget {
                             "Chưa nhập thông tin",
                           ),
                         );
-                        Login(context);
+                      });
+                } else if (!regExp.hasMatch(_email.text)) {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                          content: Text(
+                            "Nhập sai Email",
+                          ),
+                        );
                       });
                 } else if (_email.text != _password.text) {
                   showDialog(
@@ -192,7 +169,7 @@ class FirstRoute extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => LoadingScreen(),
+                      builder: (context) => LoadingCreen3Second(),
                     ),
                   );
                 }
@@ -292,6 +269,140 @@ class SecondRoute extends StatelessWidget {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class Message extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.cyan,
+      body: Center(
+        child: Column(children: [
+          Container(
+            margin: EdgeInsets.only(top: 70, bottom: 20),
+            child: SizedBox(
+              height: 120,
+              width: 120,
+              child: Container(
+                  child: FlatButton(
+                onPressed: () {},
+                color: Colors.white,
+                child: Icon(
+                  Icons.drafts_sharp,
+                  size: 70,
+                  color: Colors.lightBlue.shade200,
+                ),
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(60.0)),
+              )),
+            ),
+          ),
+          Container(
+            child: Text(
+              "SignIn",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 40,
+              ),
+            ),
+          ),
+          Container(
+            child: Text(
+              "Speak, friend, and enter",
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 20,
+              ),
+            ),
+          ),
+        ]),
+      ),
+    );
+  }
+}
+
+class LoadingCreen3Second extends StatefulWidget {
+  const LoadingCreen3Second({Key? key}) : super(key: key);
+
+  @override
+  _LoadingCreen3SecondState createState() => _LoadingCreen3SecondState();
+}
+
+class _LoadingCreen3SecondState extends State<LoadingCreen3Second> {
+  @override
+  void initState() {
+    super.initState();
+    Timer(
+        Duration(seconds: 3),
+        () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => LoadingScreen()),
+            ));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.cyan,
+      body: Stack(
+        fit: StackFit.expand,
+        children: [
+          Column(
+            children: [
+              Container(
+                margin: EdgeInsets.only(top: 70, bottom: 20),
+                child: SizedBox(
+                  height: 120,
+                  width: 120,
+                  child: Container(
+                      child: FlatButton(
+                    onPressed: () {},
+                    color: Colors.white,
+                    child: Icon(
+                      Icons.drafts_sharp,
+                      size: 70,
+                      color: Colors.lightBlue.shade200,
+                    ),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(60.0)),
+                  )),
+                ),
+              ),
+              Container(
+                child: Text(
+                  "SignIn",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 40,
+                  ),
+                ),
+              ),
+              Container(
+                child: Text(
+                  "Speak, friend, and enter",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 20,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 150,
+              ),
+              SpinKitWave(
+                itemBuilder: (BuildContext context, int index) {
+                  return DecoratedBox(
+                    decoration: BoxDecoration(
+                        color: index.isEven ? Colors.white : Colors.green),
+                  );
+                },
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
