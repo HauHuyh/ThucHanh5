@@ -685,9 +685,18 @@ class _LoadingState extends State<LoadingScreenState> {
                         ),
                       ),
                       Container(
-                           margin: EdgeInsets.only(left: 330),
-                        child: Icon(Icons.check_box_outline_blank,
-                            color: Colors.blue),
+                        margin: EdgeInsets.only(left: 330),
+                        child: Checkbox(
+                          checkColor: Colors.white,
+                          fillColor:
+                              MaterialStateProperty.resolveWith(getColor),
+                          value: isChecked1,
+                          onChanged: (bool? value) {
+                            setState(() {
+                              isChecked1 = value!;
+                            });
+                          },
+                        ),
                       )
                     ],
                   ),
