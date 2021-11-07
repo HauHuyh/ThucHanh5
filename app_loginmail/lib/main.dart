@@ -15,7 +15,7 @@ class HeroApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       title: 'Transition Demo',
-      home: const FirstRoute(),
+      home: const LoadingScreen(),
     );
   }
 }
@@ -25,6 +25,14 @@ TextEditingController _password = new TextEditingController();
 bool flag = false;
 bool isChecked = false;
 bool isChecked1 = false;
+bool isChecked2 = false;
+bool isChecked3 = false;
+bool isChecked4 = false;
+bool isChecked5 = false;
+bool isChecked6 = false;
+bool isChecked7 = false;
+int tong = 0;
+int soluong = 1;
 const partern = r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$';
 final regExp = RegExp(partern);
 
@@ -331,6 +339,7 @@ class LoadingCreen3Second extends StatefulWidget {
   _LoadingCreen3SecondState createState() => _LoadingCreen3SecondState();
 }
 
+//form Loading
 class _LoadingCreen3SecondState extends State<LoadingCreen3Second> {
   @override
   void initState() {
@@ -392,6 +401,7 @@ class _LoadingCreen3SecondState extends State<LoadingCreen3Second> {
               SizedBox(
                 height: 150,
               ),
+              //Icon Loading
               SpinKitWave(
                 itemBuilder: (BuildContext context, int index) {
                   return DecoratedBox(
@@ -472,6 +482,25 @@ class _LoadingState extends State<LoadingScreenState> {
                   onChanged: (bool? value) {
                     setState(() {
                       isChecked = value!;
+                      if (isChecked == true) {
+                        isChecked1 = true;
+                        isChecked2 = true;
+                        isChecked3 = true;
+                        isChecked4 = true;
+                        isChecked5 = true;
+                        isChecked6 = true;
+                        isChecked7 = true;
+                        tong = 7;
+                      } else {
+                        isChecked1 = false;
+                        isChecked2 = false;
+                        isChecked3 = false;
+                        isChecked4 = false;
+                        isChecked5 = false;
+                        isChecked6 = false;
+                        isChecked7 = false;
+                        tong = 0;
+                      }
                     });
                   },
                 ),
@@ -503,6 +532,12 @@ class _LoadingState extends State<LoadingScreenState> {
                   onChanged: (bool? value) {
                     setState(() {
                       isChecked1 = value!;
+
+                      if (isChecked1 == true) {
+                        tong += soluong;
+                      } else {
+                        tong -= soluong;
+                      }
                     });
                   },
                 ),
@@ -510,7 +545,7 @@ class _LoadingState extends State<LoadingScreenState> {
             ),
             Container(
               width: 450,
-              margin: EdgeInsets.only(left: 20, top: 20),
+              margin: EdgeInsets.only(left: 18, top: 20),
               decoration: BoxDecoration(
                   border: Border(
                       bottom: BorderSide(width: 1.0, color: Colors.grey))),
@@ -523,7 +558,7 @@ class _LoadingState extends State<LoadingScreenState> {
                   ),
                   Container(
                     margin: EdgeInsets.only(left: 300),
-                    child: Icon(Icons.check_box_outline_blank),
+                    child: Text("4"),
                   )
                 ],
               ),
@@ -538,10 +573,15 @@ class _LoadingState extends State<LoadingScreenState> {
                 Checkbox(
                   checkColor: Colors.white,
                   fillColor: MaterialStateProperty.resolveWith(getColor),
-                  value: isChecked1,
+                  value: isChecked2,
                   onChanged: (bool? value) {
                     setState(() {
-                      isChecked1 = value!;
+                      isChecked2 = value!;
+                      if (isChecked2 == true) {
+                        tong += soluong;
+                      } else {
+                        tong -= soluong;
+                      }
                     });
                   },
                 ),
@@ -549,7 +589,7 @@ class _LoadingState extends State<LoadingScreenState> {
             ),
             Container(
               width: 450,
-              margin: EdgeInsets.only(left: 20, top: 20),
+              margin: EdgeInsets.only(left: 18, top: 20),
               decoration: BoxDecoration(
                   border: Border(
                       bottom: BorderSide(width: 1.0, color: Colors.grey))),
@@ -557,12 +597,12 @@ class _LoadingState extends State<LoadingScreenState> {
                 children: [
                   Icon(Icons.cloud_circle),
                   Container(
-                    margin: EdgeInsets.only(left: 10, bottom: 15),
+                    margin: EdgeInsets.only(left: 8, bottom: 15),
                     child: Text('iCloud'),
                   ),
                   Container(
                     margin: EdgeInsets.only(left: 330),
-                    child: Icon(Icons.check_box_outline_blank),
+                    child: Text("1"),
                   )
                 ],
               ),
@@ -577,10 +617,15 @@ class _LoadingState extends State<LoadingScreenState> {
                 Checkbox(
                   checkColor: Colors.white,
                   fillColor: MaterialStateProperty.resolveWith(getColor),
-                  value: isChecked1,
+                  value: isChecked3,
                   onChanged: (bool? value) {
                     setState(() {
-                      isChecked1 = value!;
+                      isChecked3 = value!;
+                      if (isChecked3 == true) {
+                        tong += soluong;
+                      } else {
+                        tong -= soluong;
+                      }
                     });
                   },
                 ),
@@ -588,7 +633,7 @@ class _LoadingState extends State<LoadingScreenState> {
             ),
             Container(
               width: 450,
-              margin: EdgeInsets.only(left: 20, top: 20),
+              margin: EdgeInsets.only(left: 18, top: 20),
               decoration: BoxDecoration(
                   border: Border(
                       bottom: BorderSide(width: 1.0, color: Colors.grey))),
@@ -596,12 +641,12 @@ class _LoadingState extends State<LoadingScreenState> {
                 children: [
                   Icon(Icons.mail_outline_outlined),
                   Container(
-                    margin: EdgeInsets.only(left: 10, bottom: 15),
+                    margin: EdgeInsets.only(left: 8, bottom: 15),
                     child: Text('Gmail'),
                   ),
                   Container(
                     margin: EdgeInsets.only(left: 333),
-                    child: Icon(Icons.check_box_outline_blank),
+                    child: Text("1"),
                   )
                 ],
               ),
@@ -616,10 +661,15 @@ class _LoadingState extends State<LoadingScreenState> {
                 Checkbox(
                   checkColor: Colors.white,
                   fillColor: MaterialStateProperty.resolveWith(getColor),
-                  value: isChecked1,
+                  value: isChecked4,
                   onChanged: (bool? value) {
                     setState(() {
-                      isChecked1 = value!;
+                      isChecked4 = value!;
+                      if (isChecked4 == true) {
+                        tong += soluong;
+                      } else {
+                        tong -= soluong;
+                      }
                     });
                   },
                 ),
@@ -627,7 +677,7 @@ class _LoadingState extends State<LoadingScreenState> {
             ),
             Container(
               width: 450,
-              margin: EdgeInsets.only(left: 20, top: 20),
+              margin: EdgeInsets.only(left: 18, top: 20),
               decoration: BoxDecoration(
                   border: Border(
                       bottom: BorderSide(width: 1.0, color: Colors.grey))),
@@ -635,12 +685,12 @@ class _LoadingState extends State<LoadingScreenState> {
                 children: [
                   Icon(Icons.mail_rounded),
                   Container(
-                    margin: EdgeInsets.only(left: 10, bottom: 15),
+                    margin: EdgeInsets.only(left: 8, bottom: 15),
                     child: Text('Hot mail'),
                   ),
                   Container(
                     margin: EdgeInsets.only(left: 317),
-                    child: Icon(Icons.check_box_outline_blank),
+                    child: Text("1"),
                   )
                 ],
               ),
@@ -655,10 +705,15 @@ class _LoadingState extends State<LoadingScreenState> {
                 Checkbox(
                   checkColor: Colors.white,
                   fillColor: MaterialStateProperty.resolveWith(getColor),
-                  value: isChecked1,
+                  value: isChecked5,
                   onChanged: (bool? value) {
                     setState(() {
-                      isChecked1 = value!;
+                      isChecked5 = value!;
+                      if (isChecked5 == true) {
+                        tong += soluong;
+                      } else {
+                        tong -= soluong;
+                      }
                     });
                   },
                 ),
@@ -666,7 +721,7 @@ class _LoadingState extends State<LoadingScreenState> {
             ),
             Container(
               width: 450,
-              margin: EdgeInsets.only(left: 20, top: 20),
+              margin: EdgeInsets.only(left: 18, top: 20),
               decoration: BoxDecoration(
                   border: Border(
                       bottom: BorderSide(width: 1.0, color: Colors.grey))),
@@ -674,13 +729,13 @@ class _LoadingState extends State<LoadingScreenState> {
                 children: [
                   Icon(Icons.people_alt_outlined),
                   Container(
-                    margin: EdgeInsets.only(left: 10, bottom: 15),
+                    margin: EdgeInsets.only(left: 8, bottom: 15),
                     child: Text('VIP'),
                   ),
                   Container(
                     margin: EdgeInsets.only(left: 347),
-                    child: Icon(Icons.check_box_outline_blank),
-                  )
+                    child: Text("1"),
+                  ),
                 ],
               ),
             ),
@@ -702,10 +757,15 @@ class _LoadingState extends State<LoadingScreenState> {
                 Checkbox(
                   checkColor: Colors.white,
                   fillColor: MaterialStateProperty.resolveWith(getColor),
-                  value: isChecked1,
+                  value: isChecked6,
                   onChanged: (bool? value) {
                     setState(() {
-                      isChecked1 = value!;
+                      isChecked6 = value!;
+                      if (isChecked6 == true) {
+                        tong += soluong;
+                      } else {
+                        tong -= soluong;
+                      }
                     });
                   },
                 ),
@@ -713,7 +773,7 @@ class _LoadingState extends State<LoadingScreenState> {
             ),
             Container(
               width: 450,
-              margin: EdgeInsets.only(left: 20, top: 20),
+              margin: EdgeInsets.only(left: 18, top: 20),
               decoration: BoxDecoration(
                   border: Border(
                       bottom: BorderSide(width: 1.0, color: Colors.grey))),
@@ -721,12 +781,12 @@ class _LoadingState extends State<LoadingScreenState> {
                 children: [
                   Icon(Icons.security_rounded),
                   Container(
-                    margin: EdgeInsets.only(left: 10, bottom: 15),
+                    margin: EdgeInsets.only(left: 8, bottom: 15),
                     child: Text('Secure'),
                   ),
                   Container(
                     margin: EdgeInsets.only(left: 328),
-                    child: Icon(Icons.check_box_outline_blank),
+                    child: Text("1"),
                   )
                 ],
               ),
@@ -741,10 +801,15 @@ class _LoadingState extends State<LoadingScreenState> {
                 Checkbox(
                   checkColor: Colors.white,
                   fillColor: MaterialStateProperty.resolveWith(getColor),
-                  value: isChecked1,
+                  value: isChecked7,
                   onChanged: (bool? value) {
                     setState(() {
-                      isChecked = value!;
+                      isChecked7 = value!;
+                      if (isChecked5 == true) {
+                        tong += soluong;
+                      } else {
+                        tong -= soluong;
+                      }
                     });
                   },
                 ),
@@ -752,7 +817,7 @@ class _LoadingState extends State<LoadingScreenState> {
             ),
             Container(
               width: 450,
-              margin: EdgeInsets.only(left: 20, top: 20),
+              margin: EdgeInsets.only(left: 18, top: 20),
               decoration: BoxDecoration(
                   border: Border(
                       bottom: BorderSide(width: 1.0, color: Colors.grey))),
@@ -760,30 +825,33 @@ class _LoadingState extends State<LoadingScreenState> {
                 children: [
                   Icon(Icons.notification_add_outlined),
                   Container(
-                    margin: EdgeInsets.only(left: 10, bottom: 15),
+                    margin: EdgeInsets.only(left: 8, bottom: 15),
                     child: Text('Notifications'),
                   ),
                   Container(
                     margin: EdgeInsets.only(left: 290),
-                    child: Icon(Icons.check_box_outline_blank),
+                    child: Text("1"),
                   )
                 ],
               ),
             ),
           ],
         ),
+
+        //Delete
         Row(
           children: [
             Column(
               children: [
                 Container(
-                  width: 570,
-                  margin: EdgeInsets.only(top: 80),
+                  width: 500,
+                  margin: EdgeInsets.only(top: 150),
                   decoration: BoxDecoration(
                       border: Border(
                           bottom: BorderSide(width: 2.0, color: Colors.blue))),
                 ),
                 Container(
+                  color: Colors.grey.shade300,
                   child: Column(
                     children: [
                       Container(
@@ -796,19 +864,9 @@ class _LoadingState extends State<LoadingScreenState> {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.only(left: 330),
-                        child: Checkbox(
-                          checkColor: Colors.white,
-                          fillColor:
-                              MaterialStateProperty.resolveWith(getColor),
-                          value: isChecked1,
-                          onChanged: (bool? value) {
-                            setState(() {
-                              isChecked1 = value!;
-                            });
-                          },
-                        ),
-                      )
+                        margin: EdgeInsets.only(left: 440),
+                        child: Text(tong.toString() + " item"),
+                      ),
                     ],
                   ),
                 ),
